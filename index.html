@@ -20,7 +20,7 @@ h2{font-size:13px;font-weight:800;color:var(--mu);margin:16px 0 8px;text-transfo
 label{font-size:13px;color:var(--mu);display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
 input[type=text],textarea{font:inherit;font-size:16px;padding:9px 11px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);width:100%}
 textarea{min-height:90px;resize:vertical}
-.pc{display:inline-block;margin:0;font-size:14px;font-weight:500;color:var(--tx);padding:8px 14px;border-radius:99px;border:1px solid var(--bd);cursor:pointer}.pc.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}.chk{flex-direction:row;align-items:center;gap:8px;font-size:14px;color:var(--tx)}
+.pc{display:inline-block;margin:0;font-size:14px;font-weight:500;color:var(--tx);padding:8px 14px;border-radius:99px;border:1px solid var(--bd);cursor:pointer}.pc.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}input[type=range]{width:100%;accent-color:var(--ac)}.ed h3{font-size:13px;font-weight:800;color:var(--mu);margin:14px 0 8px}.ed .ch{margin-bottom:10px}.chk{flex-direction:row;align-items:center;gap:8px;font-size:14px;color:var(--tx)}
 .acts{display:flex;flex-direction:column;gap:8px;margin-top:18px}
 .go{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:800;padding:14px;font-size:16px;border-radius:14px}.go.s{background:transparent;color:var(--tx);border-color:var(--bd)}
 .go:disabled{opacity:.5}
@@ -35,7 +35,7 @@ textarea{min-height:90px;resize:vertical}
 <p class="note">Видео в формате MP4 открывается в WhatsApp, Telegram и Instagram. Гифок нет: они тяжелее и хуже качеством, а мессенджеры всё равно превращают их в видео. Для историй хватает Full HD, площадки пережимают 4K, поэтому 4K полезен для фото.</p>
 <script>
 var T=7,SANS="Manrope,system-ui,sans-serif",SERIF='"Playfair Display",Georgia,serif';
-var S={pl:"ig",fm:"st",th:"ocean",ly:"prod",q:1080,sz:false,cta:"Написать менеджеру",contact:"+7 000 000-00-00"},F={},img=null,ctx,k,t,H,gA=1,playing=true,t0=performance.now(),busy=false;
+var S={pl:"ig",fm:"st",th:"ocean",ly:"prod",q:1080,sz:false,fit:"fill",cut:0,tol:30,zoom:1,dx:0,dy:0,hh:1,cta:"Написать менеджеру",contact:"+7 000 000-00-00"},F={},img=null,ctx,k,t,H,gA=1,playing=true,t0=performance.now(),busy=false;
 try{var sv=JSON.parse(localStorage.getItem("mt-studio")||"{}");if(sv.F)F=sv.F;if(sv.cta)S.cta=sv.cta;if(sv.contact)S.contact=sv.contact}catch(x){}
 var FM={st:{h:1920,top:250,bot:340,n:"Сторис 9:16"},po:{h:1350,top:60,bot:60,n:"Пост 4:5"},sq:{h:1080,top:60,bot:60,n:"Квадрат 1:1"}};
 var PL={ig:"Instagram",wa:"WhatsApp",tg:"Telegram"};
@@ -71,8 +71,8 @@ if(s==="grid"){ctx.strokeStyle=th.so;ctx.lineWidth=2;ctx.globalAlpha=.08;var o=(
 if(s==="aura"){[[250,300,520,0],[900,H*.55,560,2],[300,H*.9,480,4]].forEach(function(b){var cx=b[0]+Math.sin(t*.5+b[3])*70,cy=b[1]+Math.cos(t*.4+b[3])*60,r=ctx.createRadialGradient(cx,cy,0,cx,cy,b[2]);r.addColorStop(0,rgba(th.ac,.5));r.addColorStop(1,rgba(th.ac,0));ctx.fillStyle=r;ctx.fillRect(0,0,1080,H)})}}
 function head(y){var th=TH[S.th],cx=106,cy=y+46;ctx.globalAlpha=gA*ease(t/.6);ctx.beginPath();ctx.arc(cx,cy,46,0,7);ctx.fillStyle=th.inv?"#fff":"#2F79BA";ctx.fill();ctx.save();ctx.translate(cx,cy);ctx.scale(.0955,.0955);ctx.translate(-971,-533);ctx.fillStyle=th.inv?"#2F79BA":"#fff";ctx.fill(LG1);ctx.fill(LG2);ctx.restore();ctx.globalAlpha=gA;tx("МедТоргКМВ",172,cy-22,700,42,800,th.fg,.1)}
 function tag(s,x,y,d){var th=TH[S.th],a=ease((t-d)/.5);ctx.font="800 32px "+SANS;var w=ctx.measureText(s).width+56;ctx.globalAlpha=gA*a;rr(x,y+(1-a)*20,w,64,32);ctx.fillStyle=th.ac;ctx.fill();ctx.fillStyle=th.ot;ctx.fillText(s,x+28,y+14+(1-a)*20);ctx.globalAlpha=gA}
-function photo(x,y,w,h,r){var th=TH[S.th],a=ease((t-.3)/.7);ctx.save();ctx.globalAlpha=gA*a;rr(x,y,w,h,r);ctx.clip();ctx.fillStyle=rgba(th.so,.2);ctx.fillRect(x,y,w,h);
-if(img){var sc=Math.max(w/img.width,h/img.height)*(1+.08*t/T);ctx.drawImage(img,x+w/2-img.width*sc/2,y+h/2-img.height*sc/2,img.width*sc,img.height*sc)}
+function photo(x,y,w,h,r){var th=TH[S.th],a=ease((t-.3)/.7);ctx.save();ctx.globalAlpha=gA*a;var co=img&&S.cut;if(co){ctx.beginPath();ctx.rect(x-80,y-80,w+160,h+160);ctx.clip();ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=50*k;ctx.shadowOffsetY=24*k}else{rr(x,y,w,h,r);ctx.clip();ctx.fillStyle=rgba(th.so,.2);ctx.fillRect(x,y,w,h)}
+if(img){var bs=S.fit==="fit"?Math.min(w/img.width,h/img.height):Math.max(w/img.width,h/img.height),sc=bs*S.zoom*(1+.05*t/T);ctx.drawImage(img,x+w/2-img.width*sc/2+S.dx*w/2,y+h/2-img.height*sc/2+S.dy*h/2,img.width*sc,img.height*sc)}
 else{var cx=x+w/2,cy=y+h/2-20+Math.sin(t*1.8)*14,u=Math.min(h*.5,260);ctx.save();ctx.translate(cx,cy);ctx.rotate(-.14+Math.sin(t*1.8)*.05);ctx.fillStyle=th.ac;rr(-u*.38,-u*.5,u*.76,u,18);ctx.fill();ctx.fillStyle=th.so;ctx.fillRect(-u*.38,-u*.08,u*.76,u*.2);ctx.restore();ctx.fillStyle=th.so;ctx.font="500 30px "+SANS;ctx.fillText("Фото товара",cx-ctx.measureText("Фото товара").width/2,y+h-60)}
 ctx.restore();ctx.globalAlpha=gA}
 function cta(y){var th=TH[S.th],a=ease((t-2.6)/.5);ctx.globalAlpha=gA*a;y+=(1-a)*30;
@@ -80,31 +80,43 @@ if(S.pl==="ig"){rr(60,y,960,110,55);ctx.fillStyle=th.bb;ctx.fill();ctx.save();rr
 else{ctx.fillStyle=th.so;ctx.globalAlpha=gA*a*.5;ctx.fillRect(60,y,960,2);ctx.globalAlpha=gA*a;ctx.font="500 30px "+SANS;var l=S.cta+" в "+PL[S.pl];ctx.fillStyle=th.so;ctx.fillText(l,540-ctx.measureText(l).width/2,y+22);ctx.font="800 54px "+SANS;ctx.fillStyle=th.fg;ctx.fillText(S.contact,540-ctx.measureText(S.contact).width/2,y+62)}
 ctx.globalAlpha=gA}
 var LY={
-prod:function(c){var th=TH[S.th],ph=Math.max(200,c.av-80-310);tag(fv("tag"),60,c.y0,.2);photo(60,c.y0+80,960,ph,44);var y=c.y0+80+ph+34;y+=ti(fv("title"),60,y,960,c.ts,.8)+8;tx(fv("sub"),60,y,960,44,500,th.so,1.5)},
+prod:function(c){var th=TH[S.th],ph=hh(Math.max(200,c.av-80-310),c.av-80-250);tag(fv("tag"),60,c.y0,.2);photo(60,c.y0+80,960,ph,44);var y=c.y0+80+ph+34;y+=ti(fv("title"),60,y,960,c.ts,.8)+8;tx(fv("sub"),60,y,960,44,500,th.so,1.5)},
 list:function(c){var th=TH[S.th],y=c.y0;y+=ti(fv("title"),60,y,960,c.ts-6,.3)+30;var it=fv("items").split("\n").filter(Boolean).slice(0,5),rh=Math.min(150,(c.av-(y-c.y0)-10)/it.length);
 it.forEach(function(s,i){var p=s.split("|"),a=ease((t-(.9+i*.6))/.5),x=60+(1-a)*220,yy=y+i*rh;ctx.globalAlpha=gA*a;rr(x,yy,960,rh-18,30);ctx.fillStyle=rgba(th.so,.16);ctx.fill();ctx.beginPath();ctx.arc(x+62,yy+(rh-18)/2,32,0,7);ctx.fillStyle=th.ac;ctx.fill();ctx.fillStyle=th.ot;ctx.font="800 34px "+SANS;ctx.fillText(i+1,x+62-ctx.measureText(i+1).width/2,yy+(rh-18)/2-18);ctx.fillStyle=th.fg;ctx.font="800 40px "+SANS;ctx.fillText(p[0],x+120,yy+(p[1]?16:(rh-18)/2-24));if(p[1]){ctx.fillStyle=th.so;ctx.font="500 30px "+SANS;ctx.fillText(p[1],x+120,yy+66)}});ctx.globalAlpha=gA},
-quote:function(c){var th=TH[S.th],ph=Math.max(200,c.av*.4);photo(60,c.y0,960,ph,44);var y=c.y0+ph+40;y+=tx("«"+fv("quote")+"»",60,y,960,c.ts-18,500,th.fg,.8,"l",SERIF)+14;tx(fv("name"),60,y,960,38,500,th.so,2)},
-promo:function(c){var th=TH[S.th],y=c.y0+100,ph=Math.min(380,c.av*.3);tag(fv("tag"),60,c.y0,.2);if(img){photo(60,y,960,ph,44);y+=ph+30}
+quote:function(c){var th=TH[S.th],ph=hh(Math.max(200,c.av*.4),c.av*.55);photo(60,c.y0,960,ph,44);var y=c.y0+ph+40;y+=tx("«"+fv("quote")+"»",60,y,960,c.ts-18,500,th.fg,.8,"l",SERIF)+14;tx(fv("name"),60,y,960,38,500,th.so,2)},
+promo:function(c){var th=TH[S.th],y=c.y0+100,ph=hh(Math.min(380,c.av*.3),c.av*.5);tag(fv("tag"),60,c.y0,.2);if(img){photo(60,y,960,ph,44);y+=ph+30}
 var s=170;ctx.font="800 "+s+"px "+SANS;while(ctx.measureText(fv("big")).width>960&&s>60){s-=6;ctx.font="800 "+s+"px "+SANS}var a=ease((t-.5)/.6);ctx.globalAlpha=gA*a;ctx.fillStyle=th.hi;ctx.fillText(fv("big"),60,y+(1-a)*30);y+=s*1.15+10;ctx.globalAlpha=gA;y+=ti(fv("title"),60,y,960,Math.round(c.ts*.8),1.2)+6;tx(fv("sub"),60,y,960,42,500,th.so,2)},
-poll:function(c){var th=TH[S.th],y=c.y0;y+=ti(fv("title"),60,y,960,c.ts-6,.3)+26;var ph=Math.max(160,c.av-(y-c.y0)-310);photo(60,y,960,ph,44);var sy=y+ph+26,a=ease((t-1.6)/.5);ctx.globalAlpha=gA*a;sy+=(1-a)*70;rr(60,sy,960,284,44);ctx.fillStyle="#fff";ctx.fill();ctx.fillStyle="#14263A";ctx.font="800 34px "+SANS;ctx.fillText("Ваш выбор",540-ctx.measureText("Ваш выбор").width/2,sy+26);
+poll:function(c){var th=TH[S.th],y=c.y0;y+=ti(fv("title"),60,y,960,c.ts-6,.3)+26;var ph=hh(Math.max(160,c.av-(y-c.y0)-310),c.av-(y-c.y0)-250);photo(60,y,960,ph,44);var sy=y+ph+26,a=ease((t-1.6)/.5);ctx.globalAlpha=gA*a;sy+=(1-a)*70;rr(60,sy,960,284,44);ctx.fillStyle="#fff";ctx.fill();ctx.fillStyle="#14263A";ctx.font="800 34px "+SANS;ctx.fillText("Ваш выбор",540-ctx.measureText("Ваш выбор").width/2,sy+26);
 [fv("a"),fv("b")].forEach(function(o,i){var on=i===0&&t>3.6,x=90+i*450;rr(x,sy+96,420,150,32);ctx.fillStyle=on?th.ac:"#E6EEF6";ctx.fill();ctx.fillStyle=on?th.ot:"#14263A";ctx.font="800 44px "+SANS;ctx.fillText(o,x+210-ctx.measureText(o).width/2,sy+146)});ctx.globalAlpha=gA}};
 function paint(c,tt,pv){ctx=c.getContext("2d");var f=FM[S.fm];H=f.h;var hh=Math.round(c.width*H/1080);if(c.height!==hh)c.height=hh;k=c.width/1080;ctx.setTransform(k,0,0,k,0,0);t=tt;gA=1;ctx.textBaseline="top";ctx.globalAlpha=1;bg();gA=t>T-.6?Math.max(0,(T-t)/.6):1;ctx.globalAlpha=gA;
 var y0=f.top+(f.top>200?140:130),cy=H-f.bot-110;head(f.top+(f.top>200?12:0));LY[S.ly]({y0:y0,av:cy-30-y0,ts:H>1500?80:66});cta(cy);
 if(pv&&S.sz){ctx.globalAlpha=1;ctx.fillStyle="rgba(226,75,74,.18)";ctx.strokeStyle="#E24B4A";ctx.lineWidth=3;ctx.setLineDash([14,10]);if(f.top>200){ctx.fillRect(0,0,1080,f.top);ctx.strokeRect(0,0,1080,f.top);ctx.fillRect(0,H-f.bot,1080,f.bot);ctx.strokeRect(0,H-f.bot,1080,f.bot)}ctx.setLineDash([])}}
+var imgO=null,cu;
+function hh(v,m){return Math.max(160,Math.min(v*S.hh,m))}
+function applyCut(){img=S.cut&&imgO?cutOut(imgO,S.tol):imgO}
+function cutOut(o,tol){var sc=Math.min(1,1400/Math.max(o.width,o.height)),W=Math.round(o.width*sc),Hh=Math.round(o.height*sc),c=document.createElement("canvas");c.width=W;c.height=Hh;var g=c.getContext("2d");g.drawImage(o,0,0,W,Hh);var d=g.getImageData(0,0,W,Hh),p=d.data,v=new Uint8Array(W*Hh),st=new Int32Array(W*Hh),n=0,lim=255-tol,q,x,y;
+function nw(i,l){i*=4;return p[i]>=l&&p[i+1]>=l&&p[i+2]>=l}
+function ps(i){if(!v[i]&&nw(i,lim)){v[i]=1;st[n++]=i}}
+for(x=0;x<W;x++){ps(x);ps((Hh-1)*W+x)}for(y=0;y<Hh;y++){ps(y*W);ps(y*W+W-1)}
+while(n){q=st[--n];x=q%W;if(x>0)ps(q-1);if(x<W-1)ps(q+1);if(q>=W)ps(q-W);if(q<W*(Hh-1))ps(q+W)}
+var e=[];for(q=0;q<W*Hh;q++)if(!v[q]){x=q%W;if((x>0&&v[q-1])||(x<W-1&&v[q+1])||(q>=W&&v[q-W])||(q<W*(Hh-1)&&v[q+W]))if(nw(q,lim-40))e.push(q)}
+e.forEach(function(i){v[i]=1});for(q=0;q<W*Hh;q++)if(v[q])p[q*4+3]=0;g.putImageData(d,0,0);return c}
+function rng(l,k,mn,mx,val){return '<label>'+l+'<input type="range" data-p="'+k+'" min="'+mn+'" max="'+mx+'" value="'+Math.round(val)+'"></label>'}
+function ed(){return '<div class="ed"><h3>Положение</h3>'+chips("fit",[["fill","Заполнить"],["fit","Вписать"]],S.fit)+rng("Масштаб","zoom",50,250,S.zoom*100)+rng("Влево и вправо","dx",-100,100,S.dx*100)+rng("Вверх и вниз","dy",-100,100,S.dy*100)+rng("Высота рамки","hh",50,150,S.hh*100)+'<h3>Фон</h3>'+chips("cut",[[0,"Как есть"],[1,"Убрать белый фон"]],S.cut)+(S.cut?rng("Сила","tol",5,80,S.tol):"")+'</div>'}
 var pvc=document.getElementById("pv");pvc.width=720;
 function loop(n){if(playing)paint(pvc,((n-t0)/1000)%T,true);requestAnimationFrame(loop)}
 function msg(s){document.getElementById("st").textContent=s}
 function chips(g,arr,cur){return '<div class="ch">'+arr.map(function(a){return '<button type="button" data-g="'+g+'" data-v="'+a[0]+'" class="'+(String(a[0])===String(cur)?"on":"")+'">'+e(a[1])+'</button>'}).join("")+'</div>'}
-function ui(){var l=L[S.ly],h="<h2>Платформа</h2>"+chips("pl",Object.keys(PL).map(function(x){return[x,PL[x]]}),S.pl)+"<h2>Формат</h2>"+chips("fm",Object.keys(FM).map(function(x){return[x,FM[x].n]}),S.fm)+"<h2>Макет</h2>"+chips("ly",Object.keys(L).filter(function(x){return !L[x].only||L[x].only===S.pl}).map(function(x){return[x,L[x].n]}),S.ly)+(l.ph?'<h2>Фото</h2><div class="ch"><label class="pc'+(img?" on":"")+'" for="up">'+(img?"Фото добавлено":"+ Добавить фото")+'</label>'+(img?'<button type="button" id="rm">Убрать</button>':"")+'</div><input type="file" accept="image/*" id="up" hidden>':"")+"<h2>Текст</h2>";
+function ui(){var l=L[S.ly],h="<h2>Платформа</h2>"+chips("pl",Object.keys(PL).map(function(x){return[x,PL[x]]}),S.pl)+"<h2>Формат</h2>"+chips("fm",Object.keys(FM).map(function(x){return[x,FM[x].n]}),S.fm)+"<h2>Макет</h2>"+chips("ly",Object.keys(L).filter(function(x){return !L[x].only||L[x].only===S.pl}).map(function(x){return[x,L[x].n]}),S.ly)+(l.ph?'<h2>Фото</h2><div class="ch"><label class="pc'+(img?" on":"")+'" for="up">'+(img?"Фото добавлено":"+ Добавить фото")+'</label>'+(img?'<button type="button" id="rm">Убрать</button>':"")+'</div><input type="file" accept="image/*" id="up" hidden>'+(img?ed():""):"")+"<h2>Текст</h2>";
 Object.keys(l.f).forEach(function(x){h+='<label>'+l.lb[x]+(x==="items"?'<textarea data-k="'+x+'">'+e(fv(x))+'</textarea>':'<input type="text" data-k="'+x+'" value="'+e(fv(x))+'">')+'</label>'});
 h+='<label>Призыв<input type="text" data-s="cta" value="'+e(S.cta)+'"></label>'+(S.pl!=="ig"?'<label>Номер или @имя<input type="text" data-s="contact" value="'+e(S.contact)+'"></label>':"")+"<h2>Качество</h2>"+chips("q",[[1080,"Full HD"],[2160,"4K"]],S.q)+'<label class="chk" style="margin-top:12px"><input type="checkbox" id="sz"'+(S.sz?" checked":"")+'>Показать зоны интерфейса</label>';
 document.getElementById("ctl").innerHTML=h;dz()}
 function dz(){document.getElementById("dz").innerHTML=Object.keys(TH).map(function(x){var q=TH[x];return '<button type="button" data-g="th" data-v="'+x+'" class="'+(x===S.th?"on":"")+'"><i style="background:linear-gradient(135deg,'+q.bg[0]+' 50%,'+q.ac+' 50%);border-color:var(--bd)"></i>'+q.n+'</button>'}).join("")}
 function store(){try{localStorage.setItem("mt-studio",JSON.stringify({F:F,cta:S.cta,contact:S.contact}))}catch(x){}}
-var ctl=document.getElementById("ctl");ctl.addEventListener("click",function(ev){if(ev.target.id==="rm"){img=null;ui()}});
-document.addEventListener("click",function(ev){var b=ev.target.closest("button[data-g]");if(!b)return;var g=b.dataset.g,v=b.dataset.v;if(g==="q")v=+v;S[g]=v;if(g==="pl"&&L[S.ly].only&&L[S.ly].only!==v)S.ly="prod";if(g==="ly")img=null;t0=performance.now();ui()});
+var ctl=document.getElementById("ctl");document.addEventListener("input",function(ev){var i=ev.target,k=i.dataset.p;if(!k)return;var v=+i.value;if(k==="tol"){S.tol=v;if(S.cut&&imgO){clearTimeout(cu);cu=setTimeout(applyCut,40)}}else S[k]=v/100});ctl.addEventListener("click",function(ev){if(ev.target.id==="rm"){img=null;imgO=null;ui()}});
+document.addEventListener("click",function(ev){var b=ev.target.closest("button[data-g]");if(!b)return;var g=b.dataset.g,v=b.dataset.v;if(g==="q"||g==="cut")v=+v;S[g]=v;if(g==="cut"){if(v)S.fit="fit";applyCut()}if(g==="pl"&&L[S.ly].only&&L[S.ly].only!==v)S.ly="prod";if(g==="ly"){img=null;imgO=null}t0=performance.now();ui()});
 ctl.addEventListener("input",function(ev){var i=ev.target;if(i.dataset.k){F[S.ly]=F[S.ly]||{};F[S.ly][i.dataset.k]=i.value}else if(i.dataset.s)S[i.dataset.s]=i.value;else return;store()});
-ctl.addEventListener("change",function(ev){var i=ev.target;if(i.id==="sz")S.sz=i.checked;if(i.id==="up"&&i.files[0]){var m=new Image();m.onload=function(){img=m;ui()};m.src=URL.createObjectURL(i.files[0])}});
+ctl.addEventListener("change",function(ev){var i=ev.target;if(i.id==="sz")S.sz=i.checked;if(i.id==="up"&&i.files[0]){var m=new Image();m.onload=function(){imgO=m;img=m;S.zoom=1;S.dx=0;S.dy=0;S.hh=1;S.cut=0;S.fit="fill";ui()};m.src=URL.createObjectURL(i.files[0])}});
 document.getElementById("pp").addEventListener("click",function(){playing=!playing;this.textContent=playing?"Пауза":"Играть";if(playing)t0=performance.now()});
 function mk(w){var c=document.createElement("canvas");c.width=w;c.height=Math.round(w*FM[S.fm].h/1080);return c}
 var pend=null;
